@@ -2,19 +2,32 @@
 
 SignBridge is a Flask-based web application that translates spoken English or Hindi into Indian Sign Language (ISL). It utilizes speech recognition, multilingual translation, and visual rendering via sign GIFs and alphabet-based spellout to enhance communication accessibility.
 
+
+<div align="center">
+
+![Home](https://raw.githubusercontent.com/aditya-raaj/Sanket/main/static/archive/main.png)
+*(Dashboard preview showcasing Home page)*
+
+  
+ <img src="https://raw.githubusercontent.com/aditya-raaj/Sanket/main/static/archive/home.gif" alt="Project demo GIF" />
+
+
+</div>
+
+
 ---
 
 ## 🚀 Features
 
-* 🎤 Real-time Speech Recognition
-* 🌐 Supports English and Hindi (auto-detect)
-* 🔀 Automatic Translation (EN ↔ HI)
-* 🎨 Indian Sign Language Rendering:
+*  Real-time Speech Recognition
+*  Supports English and Hindi (auto-detect)
+*  Automatic Translation (EN ↔ HI)
+*  Indian Sign Language Rendering:
 
   * Prebuilt sentence GIFs
   * Alphabet image spell-out fallback
-* ⚡ Fast local execution with offline mode fallback (CMU Sphinx)
-* 🔊 Works with Microphone Input
+*  Fast local execution with offline mode fallback (CMU Sphinx)
+*  Works with Microphone Input
 
 ---
 
