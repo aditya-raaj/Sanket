@@ -12,7 +12,8 @@ app = Flask(__name__)
 translator = Translator()
 
 gif_lst = [
-    'machine','magic','nail cutter','nail','hello','name','safe','calculator','google','kidnap','kite','knife','krishna','ball','balance','bag','balloon','all the best', 'are you sick', 'any questions', 'are you angry', 'are you busy',
+    'goodbye','machine','magic','nail cutter','nail','hello','name','safe','calculator','google','kidnap','kite','knife','krishna','ball','balance','bag','balloon',
+    'all the best', 'are you sick', 'any questions', 'are you angry', 'are you busy',
     'are you hungry', 'be careful', 'can we meet tomorrow', 'clean the room',
     'did you eat lunch', 'did you finish homework', 'do you go to office',
     'do you have money', 'do you want something to drink', 'do you watch tv',
@@ -33,6 +34,7 @@ gif_lst = [
     'when is your interview', 'when will we go', 'where do you live',
     'where is the bathroom', 'where is the police station', 'you are wrong'
 ]
+
 alphabet_lst = list(string.ascii_lowercase)
 
 def is_connected():
@@ -58,17 +60,31 @@ def translate():
         with sr.Microphone() as source:
             recognizer.pause_threshold = 0.7
             audio = recognizer.listen(source)
+
             try:
                 # Try English first
                 spoken_text = recognizer.recognize_google(audio, language="en-IN")
-                english_text = spoken_text
-                original_hindi = translator.translate(spoken_text, src="en", dest="hi").text
+                detected_lang = translator.detect(spoken_text).lang
+                print("Detected language (first attempt):", detected_lang)
+
+                if detected_lang == "en":
+                    english_text = spoken_text
+                    original_hindi = translator.translate(spoken_text, src="en", dest="hi").text
+                else:
+                    raise ValueError("Not English, fallback to Hindi recognition")
             except:
                 try:
-                    # Fallback to Hindi
+                    # Retry in Hindi mode
                     spoken_text = recognizer.recognize_google(audio, language="hi-IN")
-                    original_hindi = spoken_text
-                    english_text = translator.translate(spoken_text, src="hi", dest="en").text
+                    detected_lang = translator.detect(spoken_text).lang
+                    print("Detected language (fallback):", detected_lang)
+
+                    if detected_lang == "hi":
+                        original_hindi = spoken_text
+                        english_text = translator.translate(spoken_text, src="hi", dest="en").text
+                    else:
+                        original_hindi = spoken_text
+                        english_text = "(Could not translate properly)"
                 except:
                     return render_template("index.html", english="Error recognizing.", hindi="Try again.")
     else:
