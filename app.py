@@ -12,7 +12,7 @@ app = Flask(__name__)
 translator = Translator()
 
 gif_lst = [
-    'goodbye','machine','magic','nail cutter','nail','hello','name','safe','calculator','google','kidnap','kite','knife','krishna','ball','balance','bag','balloon',
+    'good bye','goodbye','machine','magic','nail cutter','nail','hello','name','safe','calculator','google','kidnap','kite','knife','krishna','ball','balance','bag','balloon',
     'all the best', 'are you sick', 'any questions', 'are you angry', 'are you busy',
     'are you hungry', 'be careful', 'can we meet tomorrow', 'clean the room',
     'did you eat lunch', 'did you finish homework', 'do you go to office',
